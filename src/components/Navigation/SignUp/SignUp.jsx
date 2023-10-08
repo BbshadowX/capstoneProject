@@ -11,6 +11,31 @@ export const SignUp = (props) => {
     event.preventDefault();
     console.log(email);
     console.log(password);
+    fetch("https://fakestoreapi.com/users", {
+      method: "POST",
+      body: JSON.stringify({
+        email: email,
+        username: username,
+        password: password,
+        name: {
+          firstname: "John",
+          lastname: "Doe",
+        },
+        address: {
+          city: "kilcoole",
+          street: "7835 new road",
+          number: 3,
+          zipcode: "12926-3874",
+          geolocation: {
+            lat: "-37.3159",
+            long: "81.1496",
+          },
+        },
+        phone: "1-570-236-7033",
+      }),
+    })
+      .then((res) => res.json())
+      .then((json) => console.log(json));
   };
 
   return (
@@ -18,13 +43,13 @@ export const SignUp = (props) => {
       <div className="sign-up-page">
         <h1 className="sign-up-title">Sign Up</h1>
         <form className="sign-up-form" onSubmit={handleSubmit}>
-          <label htmlFor="email">Email</label>
+          <label htmlFor="username">Username</label>
           <input
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-            type="email"
-            placeholder="Email"
-            className="email"
+            value={username}
+            onChange={(event) => setUsername(event.target.value)}
+            type="text"
+            placeholder="username"
+            className="username"
           />
           <label htmlFor="password">Password</label>
           <input
@@ -34,13 +59,13 @@ export const SignUp = (props) => {
             placeholder="Password"
             className="password"
           />
-          <label htmlFor="username">Full Name</label>
+          <label htmlFor="email">Email</label>
           <input
-            value={username}
-            onChange={(event) => setUsername(event.target.value)}
-            type="text"
-            placeholder="Name"
-            className="user-name"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+            type="email"
+            placeholder="Email"
+            className="email"
           />
           <button className="sign-up">Sign Up</button>
           <Link to="/log-in">

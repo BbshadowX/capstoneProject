@@ -9,9 +9,10 @@ import { fetchProducts } from "./data/data";
 import { Home } from "./components/Home/Home";
 import { Women } from "./components/Home/Women/Women";
 import { SingleProduct } from "./components/Home/SingleProduct";
-import { ProductsAccending } from "./components/Home/ProductsAccending";
-import { LogIn } from "./LogIn/LogIn";
-import { SignUp } from "./SignUp/SignUp";
+import { ProductsAZ } from "./components/Home/ProductsSort/ProductsAZ";
+import { ProductsZA } from "./components/Home/ProductsSort/ProductsZA";
+import { LogIn } from "./components/Navigation/LogIn/LogIn";
+import { SignUp } from "./components/Navigation/SignUp/SignUp";
 // import {
 //   HomeContext,
 //   HomeContextProvider,
@@ -90,8 +91,12 @@ function App() {
                 element={<SingleProduct products={products} />}
               />
               <Route
-                path="/products/accending"
-                element={<ProductsAccending products={products} />}
+                path="/products/az"
+                element={<ProductsAZ products={products} />}
+              />
+              <Route
+                path="/products/za"
+                element={<ProductsZA products={products} />}
               />
               <Route
                 path="/log-in"

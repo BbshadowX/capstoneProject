@@ -12,7 +12,7 @@ export const Navbar = ({
     <>
       <header>
         <nav>
-          <h1>Capstone</h1>
+          <h1 className="project-title">Capstone</h1>
           <Link to="/">
             <button className="button">All Products</button>
           </Link>

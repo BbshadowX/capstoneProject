@@ -1,0 +1,21 @@
+.az-title {
+  display: flex;
+  justify-content: center;
+  color: #646cff;
+}
+
+.za-title {
+  display: flex;
+  justify-content: center;
+  color: #646cff;
+}
+
+.za-links {
+  display: flex;
+  justify-content: center;
+}
+
+.az-links {
+  display: flex;
+  justify-content: center;
+}

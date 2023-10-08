@@ -3,13 +3,22 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 export const LogIn = () => {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(email);
+    console.log(username);
     console.log(password);
+    fetch("https://fakestoreapi.com/auth/login", {
+      method: "POST",
+      body: JSON.stringify({
+        username: "test123",
+        password: "test123",
+      }),
+    })
+      .then((res) => res.json())
+      .then((json) => console.log(json));
   };
 
   return (
@@ -17,13 +26,13 @@ export const LogIn = () => {
       <div className="log-in-page">
         <h1 className="login-title">Log In</h1>
         <form className="login-form" onSubmit={handleSubmit}>
-          <label htmlFor="email">Email</label>
+          <label htmlFor="username">Username</label>
           <input
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-            type="email"
-            placeholder="Email"
-            className="email"
+            value={username}
+            onChange={(event) => setUsername(event.target.value)}
+            type="text"
+            placeholder="Username"
+            className="Username"
           />
           <label htmlFor="password">Password</label>
           <input
