@@ -1,6 +1,6 @@
 import "./Product.css";
-// import { HomeContext } from "../Home/HomeContext";
-// import { useContext } from "react";
+import { HomeContext } from "../Home/HomeContext";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 
 // import SingleProduct from "../Single-Product/Single-Product";
@@ -8,7 +8,9 @@ import { Link } from "react-router-dom";
 
 export const Product = (props) => {
   const { id, title, price, image, description } = props.data;
-  // const { addtocart } = useContext(HomeContext);
+  const { addToCart, cartProducts, cartCount } = useContext(HomeContext);
+  const cartProductAmount = cartProducts[id];
+
   return (
     <>
       <div className="product">
@@ -22,8 +24,11 @@ export const Product = (props) => {
 
           <p className="product-price">${price}</p>
           <div className="add-to-cart">
-            <button className="add-cart-icon" onClick={() => addtocart(id)}>
-              Add to Cart
+            <button
+              className="add-cart-icon"
+              onClick={() => addToCart(props.data)}
+            >
+              Add to Cart{cartCount}
             </button>
           </div>
         </div>

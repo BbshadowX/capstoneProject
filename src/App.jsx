@@ -13,10 +13,7 @@ import { ProductsAZ } from "./components/Home/ProductsSort/ProductsAZ";
 import { ProductsZA } from "./components/Home/ProductsSort/ProductsZA";
 import { LogIn } from "./components/Navigation/LogIn/LogIn";
 import { SignUp } from "./components/Navigation/SignUp/SignUp";
-// import {
-//   HomeContext,
-//   HomeContextProvider,
-// } from "./components/Home/HomeContext";
+import { HomeContextProvider } from "./components/Home/HomeContext";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -51,85 +48,95 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <div className="main-app">
-          <div className="navigation-body">
-            <Navbar
-              products={products}
-              filteredProducts={filteredProducts}
-              setProducts={setProducts}
-              currentForm={currentForm}
-              setToken={setToken}
-              token={token}
-              // query={query}
-              // handleChange={searchedProduct}
-            />
+        <HomeContextProvider products={products}>
+          <div className="main-app">
+            <div className="navigation-body">
+              <Navbar
+                products={products}
+                filteredProducts={filteredProducts}
+                setProducts={setProducts}
+                currentForm={currentForm}
+                setToken={setToken}
+                token={token}
+              />
+            </div>
+            <div>
+              <Routes>
+                <Route
+                  path="/cart"
+                  element={
+                    <Cart products={products} setProducts={setProducts} />
+                  }
+                />
+                <Route
+                  path="/"
+                  element={
+                    <Home products={products} setProducts={setProducts} />
+                  }
+                />
+                <Route
+                  path="/men"
+                  element={
+                    <Men products={products} setProducts={setProducts} />
+                  }
+                />
+                <Route
+                  path="/women"
+                  element={
+                    <Women products={products} setProducts={setProducts} />
+                  }
+                />
+                <Route
+                  path="/jewelery"
+                  element={
+                    <Jewelery products={products} setProducts={setProducts} />
+                  }
+                />
+                <Route
+                  path="/electronics"
+                  element={
+                    <Electronics
+                      products={products}
+                      setProducts={setProducts}
+                    />
+                  }
+                />
+                <Route
+                  path="/product/:id"
+                  element={<SingleProduct products={products} />}
+                />
+                <Route
+                  path="/products/az"
+                  element={<ProductsAZ products={products} />}
+                />
+                <Route
+                  path="/products/za"
+                  element={<ProductsZA products={products} />}
+                />
+                <Route
+                  path="/log-in"
+                  element={
+                    <LogIn
+                      onFormSwitch={toggleForm}
+                      setToken={setToken}
+                      token={token}
+                    />
+                  }
+                />
+                <Route
+                  path="/sign-up"
+                  element={
+                    <SignUp
+                      onFormSwitch={toggleForm}
+                      setToken={setToken}
+                      token={token}
+                    />
+                  }
+                />
+              </Routes>
+            </div>
           </div>
-          {/* <HomeContextProvider products={products}> */}
-          <div>
-            <Routes>
-              <Route
-                path="/cart"
-                element={<Cart products={products} setProducts={setProducts} />}
-              />
-              <Route
-                path="/"
-                element={<Home products={products} setProducts={setProducts} />}
-              />
-              <Route
-                path="/men"
-                element={<Men products={products} setProducts={setProducts} />}
-              />
-              <Route
-                path="/women"
-                element={
-                  <Women products={products} setProducts={setProducts} />
-                }
-              />
-              <Route
-                path="/jewelery"
-                element={
-                  <Jewelery products={products} setProducts={setProducts} />
-                }
-              />
-              <Route
-                path="/electronics"
-                element={
-                  <Electronics products={products} setProducts={setProducts} />
-                }
-              />
-              <Route
-                path="/product/:id"
-                element={<SingleProduct products={products} />}
-              />
-              <Route
-                path="/products/az"
-                element={<ProductsAZ products={products} />}
-              />
-              <Route
-                path="/products/za"
-                element={<ProductsZA products={products} />}
-              />
-              <Route
-                path="/log-in"
-                element={
-                  <LogIn
-                    onFormSwitch={toggleForm}
-                    setToken={setToken}
-                    token={token}
-                  />
-                }
-              />
-              <Route
-                path="/sign-up"
-                element={
-                  <SignUp onFormSwitch={toggleForm} setToken={setToken} />
-                }
-              />
-            </Routes>
-          </div>
-          {/* </HomeContextProvider> */}
-          {/* <HomeContext products={products} setProducts={setProducts} /> */}
-        </div>
+        </HomeContextProvider>
       </BrowserRouter>
     </>
   );

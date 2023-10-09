@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { signUpUser } from "../../../data/data";
 
-export const SignUp = (props) => {
+export const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
@@ -14,19 +14,6 @@ export const SignUp = (props) => {
 
     const data = await authFn(username, password, email, name);
     console.log(data);
-    // try {
-    //   const newUser = {
-    //     user: { email, username, password, name },
-    //   };
-    //   const response = await signUpUser(newUser);
-    // } catch (error) {
-    //   console.error("There was an error creating new user", error);
-    // }
-
-    // console.log(email);
-    // console.log(username);
-    // console.log(password);
-    // console.log(name);
   };
 
   return (
@@ -41,6 +28,7 @@ export const SignUp = (props) => {
             type="text"
             placeholder="First and Last Name"
             className="name"
+            required
           />
           <label htmlFor="email">Email</label>
           <input
@@ -49,6 +37,7 @@ export const SignUp = (props) => {
             type="email"
             placeholder="Email"
             className="email"
+            required
           />
           <label htmlFor="username">Username</label>
           <input
@@ -57,6 +46,7 @@ export const SignUp = (props) => {
             type="text"
             placeholder="Username"
             className="username"
+            required
           />
           <label htmlFor="password">Password</label>
           <input
@@ -71,7 +61,8 @@ export const SignUp = (props) => {
           <Link to="/log-in">
             <button
               className="sign-up"
-              onClick={() => {
+              onClick={(e) => {
+                e.preventDefault();
                 handleSubmit();
               }}
             >

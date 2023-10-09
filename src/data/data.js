@@ -13,6 +13,7 @@ export async function fetchProducts() {
 const API_URL = "https://fakestoreapi.com";
 
 export const signUpUser = async (username, password, email, name) => {
+  console.log(username, password, email, name);
   try {
     const response = await fetch(`${API_URL}/users`, {
       method: "POST",

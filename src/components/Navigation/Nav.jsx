@@ -10,10 +10,9 @@ export const Navbar = ({
   filteredProducts,
   currentForm,
 }) => {
-  const handleChange = async () => {
-    console.log(localStorage.getItem("token"));
-    await localStorage.removeItem("token");
-    console.log(token);
+  const handleChange = () => {
+    localStorage.removeItem("token");
+    setToken(null);
   };
 
   return (
@@ -41,12 +40,7 @@ export const Navbar = ({
           {token ? (
             <div>
               <Link to="/">
-                <button
-                  className="button"
-                  onClick={() => {
-                    handleChange();
-                  }}
-                >
+                <button className="button" onClick={handleChange}>
                   Log Out
                 </button>
               </Link>

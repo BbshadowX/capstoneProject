@@ -12,17 +12,6 @@ export const LogIn = ({ setToken, token }) => {
     console.log(token);
     const data = await authFn(username, password);
     setToken(data.token);
-    // try {
-    //   const user = {
-    //     username,
-    //     password,
-    //   };
-    //   const response = await logInUser(user);
-    // } catch (error) {
-    //   console.error("There was an error logging in", error);
-    // }
-    // console.log(username);
-    // console.log(password);
   };
 
   return (
