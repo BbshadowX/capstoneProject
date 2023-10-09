@@ -21,6 +21,7 @@ import { SignUp } from "./components/Navigation/SignUp/SignUp";
 function App() {
   const [products, setProducts] = useState([]);
   const [currentForm, setCurrentForm] = useState("login");
+  const [token, setToken] = useState(localStorage.getItem("token") || null);
 
   const toggleForm = (formName) => {
     setCurrentForm[formName];
@@ -33,6 +34,14 @@ function App() {
     }
     getProducts();
   }, []);
+
+  useEffect(() => {
+    if (token) {
+      localStorage.setItem("token", token);
+    } else {
+      localStorage.removeItem("token");
+    }
+  }, [token]);
 
   const filteredProducts = (cat) => {
     const newProducts = products.filter((newval) => newval.category === cat);
@@ -49,6 +58,8 @@ function App() {
               filteredProducts={filteredProducts}
               setProducts={setProducts}
               currentForm={currentForm}
+              setToken={setToken}
+              token={token}
               // query={query}
               // handleChange={searchedProduct}
             />
@@ -100,11 +111,19 @@ function App() {
               />
               <Route
                 path="/log-in"
-                element={<LogIn onFormSwitch={toggleForm} />}
+                element={
+                  <LogIn
+                    onFormSwitch={toggleForm}
+                    setToken={setToken}
+                    token={token}
+                  />
+                }
               />
               <Route
                 path="/sign-up"
-                element={<SignUp onFormSwitch={toggleForm} />}
+                element={
+                  <SignUp onFormSwitch={toggleForm} setToken={setToken} />
+                }
               />
             </Routes>
           </div>

@@ -1,24 +1,28 @@
 import "./LogIn.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { logInUser } from "../../../data/data";
 
-export const LogIn = () => {
+export const LogIn = ({ setToken, token }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log(username);
-    console.log(password);
-    fetch("https://fakestoreapi.com/auth/login", {
-      method: "POST",
-      body: JSON.stringify({
-        username: "test123",
-        password: "test123",
-      }),
-    })
-      .then((res) => res.json())
-      .then((json) => console.log(json));
+  const handleSubmit = async () => {
+    const authFn = logInUser;
+    console.log(token);
+    const data = await authFn(username, password);
+    setToken(data.token);
+    // try {
+    //   const user = {
+    //     username,
+    //     password,
+    //   };
+    //   const response = await logInUser(user);
+    // } catch (error) {
+    //   console.error("There was an error logging in", error);
+    // }
+    // console.log(username);
+    // console.log(password);
   };
 
   return (
@@ -42,7 +46,16 @@ export const LogIn = () => {
             placeholder="Password"
             className="password"
           />
-          <button className="log-in">Log In</button>
+          <Link to="/">
+            <button
+              className="log-in"
+              onClick={() => {
+                handleSubmit();
+              }}
+            >
+              Log In
+            </button>
+          </Link>
         </form>
         <Link to="/sign-up">
           <div className="no-account">

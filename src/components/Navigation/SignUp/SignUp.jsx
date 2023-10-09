@@ -1,41 +1,32 @@
 import "./SignUp.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { signUpUser } from "../../../data/data";
 
 export const SignUp = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
+  const [name, setName] = useState("");
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log(email);
-    console.log(password);
-    fetch("https://fakestoreapi.com/users", {
-      method: "POST",
-      body: JSON.stringify({
-        email: email,
-        username: username,
-        password: password,
-        name: {
-          firstname: "John",
-          lastname: "Doe",
-        },
-        address: {
-          city: "kilcoole",
-          street: "7835 new road",
-          number: 3,
-          zipcode: "12926-3874",
-          geolocation: {
-            lat: "-37.3159",
-            long: "81.1496",
-          },
-        },
-        phone: "1-570-236-7033",
-      }),
-    })
-      .then((res) => res.json())
-      .then((json) => console.log(json));
+  const handleSubmit = async () => {
+    const authFn = signUpUser;
+
+    const data = await authFn(username, password, email, name);
+    console.log(data);
+    // try {
+    //   const newUser = {
+    //     user: { email, username, password, name },
+    //   };
+    //   const response = await signUpUser(newUser);
+    // } catch (error) {
+    //   console.error("There was an error creating new user", error);
+    // }
+
+    // console.log(email);
+    // console.log(username);
+    // console.log(password);
+    // console.log(name);
   };
 
   return (
@@ -43,21 +34,13 @@ export const SignUp = (props) => {
       <div className="sign-up-page">
         <h1 className="sign-up-title">Sign Up</h1>
         <form className="sign-up-form" onSubmit={handleSubmit}>
-          <label htmlFor="username">Username</label>
+          <label htmlFor="name">Name</label>
           <input
-            value={username}
-            onChange={(event) => setUsername(event.target.value)}
+            value={name}
+            onChange={(event) => setName(event.target.value)}
             type="text"
-            placeholder="username"
-            className="username"
-          />
-          <label htmlFor="password">Password</label>
-          <input
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-            type="password"
-            placeholder="Password"
-            className="password"
+            placeholder="First and Last Name"
+            className="name"
           />
           <label htmlFor="email">Email</label>
           <input
@@ -67,7 +50,34 @@ export const SignUp = (props) => {
             placeholder="Email"
             className="email"
           />
-          <button className="sign-up">Sign Up</button>
+          <label htmlFor="username">Username</label>
+          <input
+            value={username}
+            onChange={(event) => setUsername(event.target.value)}
+            type="text"
+            placeholder="Username"
+            className="username"
+          />
+          <label htmlFor="password">Password</label>
+          <input
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+            type="password"
+            placeholder="Password"
+            className="password"
+            minLength="6"
+            required
+          />
+          <Link to="/log-in">
+            <button
+              className="sign-up"
+              onClick={() => {
+                handleSubmit();
+              }}
+            >
+              Sign Up
+            </button>
+          </Link>
           <Link to="/log-in">
             <div className="have-account">
               <button className="have-account-button">
@@ -80,3 +90,17 @@ export const SignUp = (props) => {
     </>
   );
 };
+
+// console.log(email);
+// console.log(username);
+// console.log(password);
+// fetch("https://fakestoreapi.com/users", {
+//   method: "POST",
+//   body: JSON.stringify({
+//     email: email,
+//     username: username,
+//     password: password,
+//   }),
+// })
+// .then((res) => res.json())
+// .then((json) => console.log(json));
