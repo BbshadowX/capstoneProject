@@ -6,7 +6,6 @@ import { CartProduct } from "./CartProduct";
 
 export const Cart = ({ products }) => {
   const { cartProducts, cartTotal } = useContext(HomeContext);
-  console.log(cartProducts);
   return (
     <div className="cart">
       <div>

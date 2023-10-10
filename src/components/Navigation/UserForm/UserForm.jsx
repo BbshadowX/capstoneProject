@@ -38,13 +38,6 @@ export const UserForm = () => {
           className="password"
         />
         <button className="log-in">{title}</button>
-        {/* <Link to="/sign-up">
-        <div className="no-account">
-        <button className="no-account-button">
-        No Account? Sign Up Here!
-        </button>
-        </div>
-    </Link> */}
       </div>
     </form>
   );

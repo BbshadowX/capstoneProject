@@ -3,13 +3,9 @@ import { HomeContext } from "../Home/HomeContext";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 
-// import SingleProduct from "../Single-Product/Single-Product";
-// import { useState } from "react";
-
 export const Product = (props) => {
-  const { id, title, price, image, description } = props.data;
-  const { addToCart, cartProducts, cartCount } = useContext(HomeContext);
-  const cartProductAmount = cartProducts[id];
+  const { id, title, price, image } = props.data;
+  const { addToCart } = useContext(HomeContext);
 
   return (
     <>
@@ -28,7 +24,7 @@ export const Product = (props) => {
               className="add-cart-icon"
               onClick={() => addToCart(props.data)}
             >
-              Add to Cart{cartCount}
+              Add to Cart
             </button>
           </div>
         </div>

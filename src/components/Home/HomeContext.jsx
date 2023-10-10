@@ -35,7 +35,6 @@ export const HomeContextProvider = (props) => {
   const [cartProducts, setCartProducts] = useState([]);
   const [cartTotal, setCartTotal] = useState(0);
   const [cartCount, setCartCount] = useState(0);
-  console.log(cartProducts);
   const addToCart = (product) => {
     setCartProducts((cartItems) => addCartItem(cartItems, product));
   };
@@ -75,7 +74,6 @@ export const HomeContextProvider = (props) => {
     cartTotal,
     cartCount,
   };
-  console.log(cartProducts);
 
   return (
     <HomeContext.Provider value={contextValue}>

@@ -1,15 +1,11 @@
 import "./Nav.css";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import { HomeContext } from "../Home/HomeContext";
+import { useContext } from "react";
 
-export const Navbar = ({
-  token,
-  setToken,
-  products,
-  setProducts,
-  filteredProducts,
-  currentForm,
-}) => {
+export const Navbar = ({ token, setToken }) => {
+  const { cartCount } = useContext(HomeContext);
   const handleChange = () => {
     localStorage.removeItem("token");
     setToken(null);
@@ -58,6 +54,7 @@ export const Navbar = ({
           <Link to="/cart">
             {" "}
             <AiOutlineShoppingCart className="nav-icons" />
+            {cartCount > 0 ? cartCount : []}
           </Link>{" "}
         </nav>
       </header>

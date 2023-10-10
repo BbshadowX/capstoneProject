@@ -1,7 +1,11 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { HomeContext } from "./HomeContext";
 
 export const SelectedProduct = (props) => {
   const { id, title, price, image, description } = props.data;
+  const { addToCart } = useContext(HomeContext);
+
   return (
     <div className="s-product">
       <div className="selected-product">
@@ -16,7 +20,10 @@ export const SelectedProduct = (props) => {
           <p className="product-description">{description}</p>
           <p className="product-price">${price}</p>
           <div className="add-cart-product">
-            <button className="add-cart-icon" onClick={() => addtocart(id)}>
+            <button
+              className="add-cart-icon"
+              onClick={() => addToCart(props.data)}
+            >
               Add to Cart
             </button>
           </div>

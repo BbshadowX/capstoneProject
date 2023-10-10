@@ -12,7 +12,11 @@ export const SingleProduct = ({ products }) => {
       {SingleItem.map((product) => {
         return (
           <>
-            <SelectedProduct key={product.id} data={product} />
+            <SelectedProduct
+              key={product.id}
+              data={product}
+              className="single-product-body"
+            />
           </>
         );
       })}

@@ -4,8 +4,7 @@ import { HomeContext } from "../Home/HomeContext";
 
 export const CartProduct = (props) => {
   const { id, title, price, image } = props.data;
-  const { cartTotal } = useContext(HomeContext);
-  console.log(title, "title");
+  const { removeFromCart } = useContext(HomeContext);
   return (
     <>
       <div className="cart">
@@ -18,6 +17,14 @@ export const CartProduct = (props) => {
           <h2 className="product-title">{title}</h2>
 
           <p className="product-price">${price}</p>
+          <div className="remove-product">
+            <button
+              className="button"
+              onClick={() => removeFromCart(props.data)}
+            >
+              Remove From Cart
+            </button>
+          </div>
         </div>
       </div>
     </>

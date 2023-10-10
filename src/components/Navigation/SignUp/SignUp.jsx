@@ -81,17 +81,3 @@ export const SignUp = () => {
     </>
   );
 };
-
-// console.log(email);
-// console.log(username);
-// console.log(password);
-// fetch("https://fakestoreapi.com/users", {
-//   method: "POST",
-//   body: JSON.stringify({
-//     email: email,
-//     username: username,
-//     password: password,
-//   }),
-// })
-// .then((res) => res.json())
-// .then((json) => console.log(json));
